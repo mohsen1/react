@@ -1893,6 +1893,8 @@ function forceStoreRerender(fiber: Fiber) {
   }
 }
 
+// Initial state is resolved here: if a lazy initializer function is passed, it is called once
+// and the result is stored in hook.memoizedState / hook.baseState (line 1912).
 function mountStateImpl<S>(initialState: (() => S) | S): Hook {
   const hook = mountWorkInProgressHook();
   if (typeof initialState === 'function') {
