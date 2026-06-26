@@ -1893,6 +1893,8 @@ function forceStoreRerender(fiber: Fiber) {
   }
 }
 
+// useState resolves its initial state here: if a function is passed it is called
+// once (lazy initializer); otherwise the value is used as-is, then stored in hook.memoizedState.
 function mountStateImpl<S>(initialState: (() => S) | S): Hook {
   const hook = mountWorkInProgressHook();
   if (typeof initialState === 'function') {
